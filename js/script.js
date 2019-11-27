@@ -1,11 +1,15 @@
-function getApiData() {
-    const xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            const data = JSON.parse(xhr.responseText);
+var api = require('marvel-api.json');
+ 
+var marvel = api.createClient({
+  publicKey: '61cb3c599072a3a4623eb40887c3a07e'
+});
 
-        }
-    }     
-    xhr.open('GET', 'https://developer.marvel.com/docs#!/public/getCharacterIndividual_get_1');
-    xhr.send()
-}
+marvel.characters.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+
+  marvel.characters.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
