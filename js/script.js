@@ -1,15 +1,14 @@
-var api = require('marvel-api.json');
- 
-var marvel = api.createClient({
-  publicKey: '61cb3c599072a3a4623eb40887c3a07e'
-});
+function getApiData() {
+  const xhr = new XMLHttpRequest()
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+          const data = JSON.parse(xhr.responseText);
 
-marvel.characters.findAll()
-  .then(console.log)
-  .fail(console.error)
-  .done();
+          const rers = data.result.rers.length
 
-  marvel.characters.findAll()
-  .then(console.log)
-  .fail(console.error)
-  .done();
+        }
+      }
+
+      xhr.open('GET', 'https://gateway.marvel.com:443/v1/public/characters/hulk?apikey=');
+      xhr.send()
+  }
