@@ -57,6 +57,6 @@ function StarWarsAPI()
 function Planet(thePlanet)
 {
     this.name = thePlanet.name;
-    output.innerHTML += "<br>" + thePlanet.name;
+    output.innerHTML += "<br><p style="";>" + thePlanet.name;
 }
  
