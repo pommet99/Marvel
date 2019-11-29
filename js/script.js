@@ -1,78 +1,62 @@
-var go;
-var clear;
+const output = document.getElementById("output");
+const starWarsAPI = new StarWarsAPI();
+starWarsAPI.Initialize();
 
+function StarWarsAPI()
+{
+    this.planets = new Array();
 
-var textName;
-var textBirth;
-var param;
-
-
-$(function() {
-  go = $("#go");
-  clear = $('#clear');
-	img = $('#img');
-  textName = $('#text_name');
-  textBirth = $('#text_birth');
-  param = $('#input');
-});
-
-function clearData() {
-	img.attr('src', '');
-  textName.html('');
-  textBirth.html(''); 
-  param.val('');
-}
-
-function submit(){
-  var inputValue = $.trim(param.val());
-  if (inputValue === '') return;
-  
-  var swURL = "https://swapi.co/api/people/" + param.val();
-
-  $.ajax({
-    type: "GET",
-    url: swURL,
-    success: function(data){ 
-      ajaxSuccess(data);
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-       ajaxError();
+    this.Initialize = function()
+    {
+        this.LoadPlanets("https://swapi.co/api/planets");
     }
-  });
-}
 
-function random() {
-   var number = Math.floor(Math.random() * 88) + 1;
-	 var swURL = "https://swapi.co/api/people/" + number;
+    this.LoadPlanets = function(theUrl)
+    {
 
-  $.ajax({
-    type: "GET",
-    url: swURL,
-    success: function(data){ 
-      ajaxSuccess(data);
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-       ajaxError();
+        fetch(theUrl).then(
+            function (response) 
+            {
+                if (response.status !== 200) 
+                {
+                    console.log('Looks like there was a problem. Status Code: ' + response.status);
+                    return;
+                }
+
+                response.json().then(
+                    data => this.LoadPlanetsRecursive(data)
+                );
+            }.bind(this)
+        )
     }
-  });
+
+    
+    this.LoadPlanetsRecursive = function(data)
+    {
+
+        for (let planet of data.results)
+        {
+            let newPlanet = new Planet(planet);
+            this.planets.push(newPlanet);
+        }
+
+        if (data.next != null)
+        {
+            fetch(data.next).then(
+                function (response) 
+                {
+                    response.json().then(
+                        data => this.LoadPlanetsRecursive(data)
+                    );
+                }.bind(this)
+            )
+        }
+    }
 }
 
-function ajaxSuccess(data){
-  var name = data.name;
-  var birth = data.birth_year;
-	var imageURI;
-	
-	
-	img.attr('src', imageURI);
-  textName.html(name);
-  textBirth.html(birth); 
-	
-  clear.click(function() {
-    clearData();
-  });
+function Planet(thePlanet)
+{
+    this.name = thePlanet.name;
+    output.innerHTML += "<br>" + thePlanet.name;
 }
-
-function ajaxError(data){
-  clearData();
-}
-
+ 
