@@ -1,2 +1,2 @@
-# Marvel
+# SWAPI
 Student project
