@@ -1,32 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SWAPI</title>
+	<title>SWAPI</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-	<div class="header">
-		<h1>STAR WARS</h1>
-
-		<div class="buttons">
-			<input class="input" type="text" id="input" placeholder="Enter a Number...">
-			<button id="go" class="button" onclick="submit()">Go</button>
-			<br> <br>
-			<button id="random" class="rdm-button" onclick="random()">Random Character</button>
-			<button id="clear" class="button-clear">x</button>
-		</div>
-	</div>
+	<div id="output"></div>
 	
-	<div class="info">
-		<div id="data" class="data">
-			<p class="data-text"><span id="text_name"></span></p>
-			<p class="data-text"><span id="text_birth"></span></p>
-		</div>
-    </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
 </body>
