@@ -10,20 +10,16 @@ body{
 header{
     width: 100%;
     height: 100vh;
-    background-image: url(https://wallpaperaccess.com/full/38394.jpg);
+    background-image: url(https://www.elsetge.cat/myimg/f/8-82925_star-wars-wallpaper-widescreen-star-wars-theme-background.jpg);
     background-color: rgba(0, 0, 0, 0.292);
     position: absolute;
 }
 
-.pres{
-    position: relative;
-    background-color: #fff;
-    width: 600px;   
-    height: 300px;
-    margin: 8%;
+#output{
+    color: yellow;
 }
 
-.categories{
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.476);
+.names{
+    display: inline-block;
+    background-color: violet;
 }
