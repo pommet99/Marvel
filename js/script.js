@@ -17,21 +17,15 @@ function StarWarsAPI()
         fetch(theUrl).then(
             function (response) 
             {
-                if (response.status !== 200) 
-                {
-                    console.log('Looks like there was a problem. Status Code: ' + response.status);
-                    return;
-                }
-
                 response.json().then(
-                    data => this.LoadPlanetsRecursive(data)
+                    data => this.LoadThePlanets(data)
                 );
             }.bind(this)
         )
     }
 
     
-    this.LoadPlanetsRecursive = function(data)
+    this.LoadThePlanets = function(data)
     {
 
         for (let planet of data.results)
@@ -46,7 +40,7 @@ function StarWarsAPI()
                 function (response) 
                 {
                     response.json().then(
-                        data => this.LoadPlanetsRecursive(data)
+                        data => this.LoadThePlanets(data)
                     );
                 }.bind(this)
             )
